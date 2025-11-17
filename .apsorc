@@ -1,0 +1,122 @@
+{
+  "entities": [
+    {
+      "name": "Subscription",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "plan_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "customer_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "active",
+            "inactive"
+          ]
+        }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            "plan_id",
+            "customer_id"
+          ],
+          "unique": false
+        },
+        {
+          "fields": [
+            "customer_id"
+          ],
+          "unique": false
+        }
+      ],
+      "uniques": []
+    },
+    {
+      "name": "Plan",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "price",
+          "type": "numeric",
+          "nullable": false
+        },
+        {
+          "name": "billing_cycle",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "monthly",
+            "quarterly",
+            "annually"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Customer",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "nullable": true
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Subscription",
+      "to": "Plan",
+      "type": "ManyToOne"
+    },
+    {
+      "from": "Subscription",
+      "to": "Customer",
+      "type": "ManyToOne"
+    }
+  ],
+  "_removedEntities": []
+}
